@@ -1,1 +1,1 @@
-# -authentication-service-nestjs-hasura-plugin
+# authentication-service-nestjs-hasura-plugin
