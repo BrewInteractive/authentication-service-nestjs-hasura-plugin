@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { HasuraClaimsPlugin } from './hasura-claims.plugin';
 import { TokenService } from '@brewww/authentication-service/dist/src/token/token.service';
 import { TokenModule } from '@brewww/authentication-service/dist/src/token/token.module';
-import { User } from '@brewww/authentication-service/dist/src/models/user.entity';
+import { HasuraCustomClaimsImporter } from './concrete/hasura-custom-claims-importer.type';
 
 describe('HasuraClaimsPlugin', () => {
   let plugin: HasuraClaimsPlugin;
@@ -23,21 +23,16 @@ describe('HasuraClaimsPlugin', () => {
     expect(plugin).toBeDefined();
   });
 
-  it('Should override getCustomClaims method of TokenService', () => {
-    const user: User = <User>(<unknown>{
-      id: '1',
-      username: 'john.doe',
-      email: 'john.doe@example.com',
-      firstName: 'John',
-      lastName: 'Doe',
-      passwordHash: 'hashedPassword123',
-      passwordSalt: 'passwordSalt456',
-      emailVerified: true,
-      createdAt: '2023-05-31T12:34:56.789Z',
-      updatedAt: '2023-05-31T12:34:56.789Z',
-    });
+  it('should add HasuraCustomClaimsImporter to TokenService', async () => {
+    const addCustomClaimImporterSpy = jest.spyOn(
+      tokenService,
+      'addCustomClaimImporter',
+    );
 
-    const customClaims = tokenService.getCustomClaims(user);
-    expect(customClaims['https://hasura.io/jwt/claims']).toBeDefined();
+    await plugin.load();
+
+    expect(addCustomClaimImporterSpy).toHaveBeenCalledWith(
+      new HasuraCustomClaimsImporter(),
+    );
   });
 });

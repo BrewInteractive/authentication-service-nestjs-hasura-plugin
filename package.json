@@ -55,7 +55,7 @@
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
-    "@brewww/authentication-service": "^1.1.2"
+    "@brewww/authentication-service": "^1.5.0"
   },
   "jest": {
     "moduleFileExtensions": [
