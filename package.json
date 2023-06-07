@@ -3,9 +3,10 @@
   "version": "1.0.2",
   "description": "",
   "author": "Brew",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "dist/src/index.js",
   "typings": "dist/src/",
+  "readmeFilename": "README.md",
   "private": false,
   "files": [
     "dist/**/*",
@@ -87,5 +88,9 @@
   "keywords": [
     "authentication",
     "hasura"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/BrewInteractive/authentication-service-nestjs-hasura-plugin/issues"
+  },
+  "homepage": "https://github.com/BrewInteractive/authentication-service-nestjs-hasura-plugin#readme"
 }
