@@ -6,6 +6,7 @@
   "license": "UNLICENSED",
   "main": "dist/src/index.js",
   "typings": "dist/src/",
+  "private": false,
   "files": [
     "dist/**/*",
     "*.md"
