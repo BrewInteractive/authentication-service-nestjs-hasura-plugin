@@ -8,10 +8,6 @@
   "typings": "dist/src/",
   "readmeFilename": "README.md",
   "private": false,
-  "files": [
-    "dist/**/*",
-    "*.md"
-  ],
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
