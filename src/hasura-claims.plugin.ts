@@ -1,15 +1,16 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { BasePlugin } from '@brewww/authentication-service/dist/src/plugin/abstract/base-plugin.plugin';
-import { TokenService } from '@brewww/authentication-service/dist/src/token/token.service';
-import { authenticationService } from '../package.json';
+
+import { BasePlugin } from '@brewww/nestjs-plugin-module';
 import { HasuraCustomClaimsImporter } from './concrete/hasura-custom-claims-importer.type';
+import { TokenService } from '@brewww/authentication-service/dist/src/token/token.service';
+import { pluginModule } from '../package.json';
 
 @Injectable()
 export class HasuraClaimsPlugin extends BasePlugin {
   @Inject('TokenService')
   private tokenService: TokenService;
   constructor() {
-    super(authenticationService);
+    super(pluginModule);
   }
 
   async load(): Promise<void> {
