@@ -1,6 +1,6 @@
 import { CustomClaim } from '@brewww/authentication-service/dist/src/token/concrete/custom-claim.type';
 import { ICustomClaimsImporter } from '@brewww/authentication-service/dist/src/token/interfaces/custom-claims-importer.interface';
-import { User } from '@brewww/authentication-service/dist/src/models/user.entity';
+import { User } from '@brewww/authentication-service/dist/src/entities';
 
 export class HasuraCustomClaimsImporter implements ICustomClaimsImporter {
   async getCustomClaimsAsync(user: User): Promise<CustomClaim[]> {
