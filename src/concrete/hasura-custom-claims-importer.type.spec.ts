@@ -1,5 +1,5 @@
 import { HasuraCustomClaimsImporter } from './hasura-custom-claims-importer.type';
-import { User } from '@brewww/authentication-service/dist/src/models/user.entity';
+import { User } from '@brewww/authentication-service/dist/src/entities';
 
 describe('HasuraCustomClaimsImporter', () => {
   let hasuraCustomClaimsImporter: HasuraCustomClaimsImporter;

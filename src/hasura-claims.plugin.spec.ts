@@ -1,8 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
+
+import { DataSource } from 'typeorm';
 import { HasuraClaimsPlugin } from './hasura-claims.plugin';
-import { TokenService } from '@brewww/authentication-service/dist/src/token/token.service';
-import { TokenModule } from '@brewww/authentication-service/dist/src/token/token.module';
 import { HasuraCustomClaimsImporter } from './concrete/hasura-custom-claims-importer.type';
+import { TokenModule } from '@brewww/authentication-service/dist/src/token/token.module';
+import { TokenService } from '@brewww/authentication-service/dist/src/token/token.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { dataSourceOptions } from '@brewww/authentication-service/dist/db/data-source';
+import { setupTestDataSourceAsync } from '../test/test-db';
 
 describe('HasuraClaimsPlugin', () => {
   let plugin: HasuraClaimsPlugin;
@@ -10,9 +15,12 @@ describe('HasuraClaimsPlugin', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [TokenModule],
+      imports: [TypeOrmModule.forRoot(dataSourceOptions), TokenModule],
       providers: [HasuraClaimsPlugin],
-    }).compile();
+    })
+      .overrideProvider(DataSource)
+      .useValue(await setupTestDataSourceAsync())
+      .compile();
 
     plugin = module.get<HasuraClaimsPlugin>(HasuraClaimsPlugin);
     await plugin.load();
