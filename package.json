@@ -54,7 +54,7 @@
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
-    "@brewww/authentication-service": "^1.12.0",
+    "@brewww/authentication-service": "^2.0.0",
     "@brewww/nestjs-plugin-module": "^1.0.5"
   },
   "jest": {
