@@ -1,3 +1,4 @@
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { DataSource } from 'typeorm';
@@ -15,8 +16,23 @@ describe('HasuraClaimsPlugin', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [TypeOrmModule.forRoot(dataSourceOptions), TokenModule],
-      providers: [HasuraClaimsPlugin],
+      imports: [
+        ConfigModule.forRoot({
+          isGlobal: true,
+        }),
+        TypeOrmModule.forRoot(dataSourceOptions),
+        TokenModule,
+      ],
+      providers: [
+        HasuraClaimsPlugin,
+        {
+          provide: ConfigService,
+          useValue: {
+            get: jest.fn(),
+          },
+        },
+      ],
+      exports: [ConfigModule],
     })
       .overrideProvider(DataSource)
       .useValue(await setupTestDataSourceAsync())
@@ -24,6 +40,9 @@ describe('HasuraClaimsPlugin', () => {
 
     plugin = module.get<HasuraClaimsPlugin>(HasuraClaimsPlugin);
     await plugin.load();
+    //list all injectibles in module
+    console.log(module.selectContextModule());
+
     tokenService = module.get<TokenService>('TokenService');
   });
 
