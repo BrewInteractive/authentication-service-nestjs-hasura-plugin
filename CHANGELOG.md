@@ -9,6 +9,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 * upgrade @brewww/authentication-service package ([2f2a6d7](https://github.com/BrewInteractive/authentication-service-nestjs-hasura-plugin/commit/2f2a6d7191ff582eac8d5cd190d1cab69ef66dac))
 
+## [1.2.0](https://github.com/BrewInteractive/authentication-service-nestjs-hasura-plugin/compare/v1.1.0...v1.2.0) (2024-05-30)
+
+
+### Features
+
+* upgrade @brewww/authentication-service package ([2f2a6d7](https://github.com/BrewInteractive/authentication-service-nestjs-hasura-plugin/commit/2f2a6d7191ff582eac8d5cd190d1cab69ef66dac))
+
 ## [1.1.0](https://github.com/BrewInteractive/authentication-service-nestjs-hasura-plugin/compare/v1.0.4...v1.1.0) (2024-01-04)
 
 
